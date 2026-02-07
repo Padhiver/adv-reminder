@@ -165,8 +165,9 @@ export default class CoreRollerHooks {
     const actor = config.subject;
     const ability = config.ability;
     const toolId = config.tool;
+    const doubleProf = this.isDoubleProf(config);
     new ToolMessage(actor, ability, toolId).addMessage(dialog);
-    if (showSources) new ToolSource(actor, ability, toolId).updateOptions(dialog);
+    if (showSources) new ToolSource(actor, ability, toolId, doubleProf).updateOptions(dialog);
     new ToolReminder(actor, ability, toolId).updateOptions(config.rolls[0].options);
   }
 

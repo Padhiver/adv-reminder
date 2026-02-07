@@ -241,7 +241,23 @@ export class SkillSource extends SourceMixin(SkillReminder) {
   }
 }
 
-export class ToolSource extends SourceMixin(ToolReminder) {}
+export class ToolSource extends SourceMixin(ToolReminder) {
+  constructor(actor, abilityId, toolId, doubleProf) {
+    super(actor, abilityId, toolId)
+
+    /** @type {boolean} */
+    this.doubleProf = doubleProf;
+  }
+
+  _customUpdateOptions(accumulator) {
+    super._customUpdateOptions(accumulator);
+
+    if (this.doubleProf) {
+      const label = game.i18n.localize("adv-reminder.Source.Advantage.doubleProf");
+      accumulator.advantage(label);
+    }
+  }
+}
 
 export class InitiativeSource extends SourceMixin(InitiativeReminder) {
   get advantageConditions() {
