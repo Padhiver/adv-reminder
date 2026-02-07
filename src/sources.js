@@ -214,6 +214,13 @@ export class AbilityCheckSource extends SourceMixin(AbilityCheckReminder) {
 }
 
 export class SkillSource extends SourceMixin(SkillReminder) {
+  constructor(actor, abilityId, skillId, doubleProf) {
+    super(actor, abilityId, skillId);
+
+    /** @type {boolean} */
+    this.doubleProf = doubleProf;
+  }
+
   _customUpdateOptions(accumulator) {
     super._customUpdateOptions(accumulator);
 
@@ -225,6 +232,11 @@ export class SkillSource extends SourceMixin(SkillReminder) {
         .filter(equip => equip.system.type.value !== "shield");
       if (armors[0]?.system.properties.has("stealthDisadvantage"))
         accumulator.disadvantage(armors[0].link);
+    }
+
+    if (this.doubleProf) {
+      const label = game.i18n.localize("adv-reminder.Source.Advantage.doubleProf");
+      accumulator.advantage(label);
     }
   }
 }

@@ -147,8 +147,9 @@ export default class CoreRollerHooks {
     const actor = config.subject;
     const ability = config.ability;
     const skillId = config.skill;
+    const doubleProf = this.isDoubleProf(config);
     new SkillMessage(actor, ability, skillId).addMessage(dialog);
-    if (showSources) new SkillSource(actor, ability, skillId).updateOptions(dialog);
+    if (showSources) new SkillSource(actor, ability, skillId, doubleProf).updateOptions(dialog);
     new SkillReminder(actor, ability, skillId).updateOptions(config.rolls[0].options);
   }
 
@@ -235,5 +236,13 @@ export default class CoreRollerHooks {
     configure ??= !Object.values(keys).some(k => k);
     if (!configure) debug("fast-forwarding the roll, stop processing");
     return !configure;
+  }
+
+  isDoubleProf(config) {
+    const actor = config.subject;
+    const skill = actor.system.skills?.[config.skill];
+    const tool = actor.system.tools?.[config.tool];
+    debug("isDoubleProf", skill, tool);
+    return !!skill?.prof.hasProficiency && !!tool?.prof.hasProficiency;
   }
 }
