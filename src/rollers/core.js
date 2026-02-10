@@ -151,7 +151,7 @@ export default class CoreRollerHooks {
     const pace = dnd5e.dataModels.shared.MovementField.getTravelPaceMode(config.pace, config.skill);
     new SkillMessage(actor, ability, skillId).addMessage(dialog);
     if (showSources) new SkillSource(actor, ability, skillId, doubleProf, pace).updateOptions(dialog);
-    new SkillReminder(actor, ability, skillId).updateOptions(config.rolls[0].options);
+    new SkillReminder(actor, ability, skillId, doubleProf, pace).updateOptions(config.rolls[0].options);
   }
 
   preRollToolV2(config, dialog, message) {
@@ -169,7 +169,7 @@ export default class CoreRollerHooks {
     const doubleProf = this.isDoubleProf(config);
     new ToolMessage(actor, ability, toolId).addMessage(dialog);
     if (showSources) new ToolSource(actor, ability, toolId, doubleProf).updateOptions(dialog);
-    new ToolReminder(actor, ability, toolId).updateOptions(config.rolls[0].options);
+    new ToolReminder(actor, ability, toolId, doubleProf).updateOptions(config.rolls[0].options);
   }
 
   preRollInitiativeDialogV2(config, dialog, message) {
