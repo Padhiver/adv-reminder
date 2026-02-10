@@ -148,8 +148,9 @@ export default class CoreRollerHooks {
     const ability = config.ability;
     const skillId = config.skill;
     const doubleProf = this.isDoubleProf(config);
+    const pace = dnd5e.dataModels.shared.MovementField.getTravelPaceMode(config.pace, config.skill);
     new SkillMessage(actor, ability, skillId).addMessage(dialog);
-    if (showSources) new SkillSource(actor, ability, skillId, doubleProf).updateOptions(dialog);
+    if (showSources) new SkillSource(actor, ability, skillId, doubleProf, pace).updateOptions(dialog);
     new SkillReminder(actor, ability, skillId).updateOptions(config.rolls[0].options);
   }
 

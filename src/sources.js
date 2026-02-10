@@ -214,11 +214,13 @@ export class AbilityCheckSource extends SourceMixin(AbilityCheckReminder) {
 }
 
 export class SkillSource extends SourceMixin(SkillReminder) {
-  constructor(actor, abilityId, skillId, doubleProf) {
+  constructor(actor, abilityId, skillId, doubleProf, pace) {
     super(actor, abilityId, skillId);
 
     /** @type {boolean} */
     this.doubleProf = doubleProf;
+    /** @type {{ advantage: boolean, disadvantage: boolean }} */
+    this.pace = pace;
   }
 
   _customUpdateOptions(accumulator) {
@@ -238,6 +240,8 @@ export class SkillSource extends SourceMixin(SkillReminder) {
       const label = game.i18n.localize("adv-reminder.Source.Advantage.doubleProf");
       accumulator.advantage(label);
     }
+    if (this.pace.advantage) accumulator.advantage("&Reference[travelpace]");
+    if (this.pace.disadvantage) accumulator.disadvantage("&Reference[travelpace]");
   }
 }
 
