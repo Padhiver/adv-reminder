@@ -3,7 +3,7 @@
   "adv-reminder.ButtonStyle": {
     "SETTING": {
       "name": "Style de bouton",
-      "hint": "Modifier le style du bouton par défaut dans les boîtes de dialogue de lancement de dés.",
+      "hint": "Modifier le style du bouton par défaut dans les boîtes de dialogue de jet de dés.",
       "label": "Configurer le style",
       "test": "Montrer un exemple"
     },
@@ -14,7 +14,7 @@
       },
       "color": {
         "label": "Couleur des boutons par défaut",
-        "hint": "Modifie la couleur du bouton par défaut dans les boîtes de dialogue de lancement de dés.."
+        "hint": "Modifie la couleur du bouton par défaut dans les boîtes de dialogue de jet de dés.."
       },
       "custom": {
         "label": "Couleurs personnalisées",
